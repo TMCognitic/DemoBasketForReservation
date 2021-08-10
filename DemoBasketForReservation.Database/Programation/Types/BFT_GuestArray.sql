@@ -1,0 +1,5 @@
+﻿CREATE TYPE [dbo].[BFT_GuestArray] AS TABLE
+(
+	[LastName] NVARCHAR(75) NOT NULL,
+	[FirstName] NVARCHAR(75) NOT NULL
+)

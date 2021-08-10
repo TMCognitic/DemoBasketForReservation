@@ -1,0 +1,73 @@
+﻿@model DemoBasketForReservation.Models.Forms.AddReservationForm
+
+@{
+    ViewData["Title"] = "Reservation";
+}
+
+<h1>Reservation</h1>
+
+<h4>AddReservationForm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Reservation">
+            <div id="AjaxErrorDiv" class="ajaxError">
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div id="GuestDiv">
+                @if (Model.Personnes is not null && Model.Personnes.Count() != 0)
+                {
+                    <partial name="_Guests" model="Model.Personnes" />
+                }
+            </div>            
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add Person
+                </button> |
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Guest</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label" for="lastname">LastName</label>
+                    <input id="lastname" type="text" class="form-control" />
+                    <span type="text" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="firstname">FirstName</label>
+                    <input id="firstname" name="firstname" type="text"  class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AddGuest()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
