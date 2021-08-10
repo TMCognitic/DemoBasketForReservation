@@ -30,14 +30,18 @@ namespace DemoBasketForReservation.Infrastructure
 
         public void AddPersonne(Personne personne)
         {
-            List<Personne> personnes = (!_session.Keys.Contains(nameof(Personnes))) ? new List<Personne>() : new List<Personne>(JsonSerializer.Deserialize<Personne[]>(_session.GetString(nameof(Personnes))));
+            List<Personne> personnes = Personnes ?? new List<Personne>();
             personnes.Add(personne);
             Personnes = personnes;
         }
 
         public void RemovePersonne(int indice)
         {
-            List<Personne> personnes = (!_session.Keys.Contains(nameof(Personnes))) ? new List<Personne>() : new List<Personne>(JsonSerializer.Deserialize<Personne[]>(_session.GetString(nameof(Personnes))));
+            List<Personne> personnes = Personnes;
+
+            if (personnes is null || personnes.Count() < indice)
+                return;
+
             personnes.RemoveAt(indice);
             Personnes = personnes;
         }

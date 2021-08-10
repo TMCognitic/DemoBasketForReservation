@@ -20,7 +20,7 @@ function AddGuest() {
         },
         error: function (data) {
             $('#AjaxErrorDiv').show();
-            $('#AjaxErrorDiv').html("<p class=\"alert-danger\">Bad request (" + data.responseText + ")...</p>");
+            $('#AjaxErrorDiv').html("<p class=\"alert-danger\">Bad request...</p>");
         }
     });
 }
@@ -35,7 +35,7 @@ function RemoveGuest(index) {
         },
         error: function (data) {
             $('#AjaxErrorDiv').show();
-            $('#AjaxErrorDiv').html("<p class=\"alert-danger\">Bad request (" + data.responseText + ")...</p>");
+            $('#AjaxErrorDiv').html("<p class=\"alert-danger\">Bad request...</p>");
         }
     });
 }
